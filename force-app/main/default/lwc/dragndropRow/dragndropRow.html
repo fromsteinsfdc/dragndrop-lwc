@@ -1,0 +1,9 @@
+<template>
+    <div class="slds-grid slds-grid_vertical-align-center" ondragover={handleRowDragover} ondragleave={handleRowDragleave} ondrop={handleRowDrop}>
+        <lightning-icon class="dragHandle" icon-name={iconName} draggable="true" ondragstart={handleDragStart}>
+        </lightning-icon>
+        <div class="slds-col">
+            <slot></slot>
+        </div>
+    </div>
+</template>

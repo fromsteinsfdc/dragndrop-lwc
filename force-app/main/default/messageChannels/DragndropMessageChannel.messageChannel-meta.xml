@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Message Channel to communicate between 'dragndrop' components</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Dragndrop Message Channel</masterLabel>
+</LightningMessageChannel>

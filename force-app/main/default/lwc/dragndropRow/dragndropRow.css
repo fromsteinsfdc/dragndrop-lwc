@@ -1,0 +1,9 @@
+.dragHandle {
+    opacity: 0;
+    transition: opacity 0.25s;
+    cursor: pointer;
+}
+
+div:hover .dragHandle {
+    opacity: 1;
+}
