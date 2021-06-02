@@ -5,40 +5,25 @@ import { publish, MessageContext } from 'lightning/messageService';
 import DRAGNDROP_MC from '@salesforce/messageChannel/DragndropMessageChannel__c';
 
 const DEFAULT_ICON = 'utility:drag_and_drop';
+const DEFAULT_ALIGNMENT = 'center';
 
 export default class DragndropRow extends LightningElement {
     @api index;
     @api handleClass;
-    @api iconName;
+    @api iconName = DEFAULT_ICON;
+    @api iconAlignment = DEFAULT_ALIGNMENT;
 
     @wire(MessageContext)
     messageContext;
 
+    activeDropzoneIndex;
 
-    get activeDropzoneIndex() {
-        return this._activeDropzoneIndex;
-    }
-    set activeDropzoneIndex(index) {
-        //console.log('setting activedropzoneindex to ' + index + ' from ' + this.activeDropzoneIndex);
-        this._activeDropzoneIndex = index;
-    }
-    _activeDropzoneIndex;
-
-    connectedCallback() {
-        this.setDefaults();
-    }
-
-    setDefaults() {
-        this.iconName = this.iconName || DEFAULT_ICON;
+    get gridClass() {
+        return 'slds-grid slds-grid_vertical-align-'+ this.iconAlignment;
     }
 
     handleDragStart(event) {
         event.dataTransfer.setData('drag-index', this.index);
-        // const payload = { 
-        //     eventType: 'draghandleDragstart',
-        //     draghandleIndex: this.index
-        // };
-        // publish(this.messageContext, DRAGNDROP_MC, payload);
     }
 
     handleRowDragover(event) {
@@ -58,12 +43,9 @@ export default class DragndropRow extends LightningElement {
             activeDropzoneIndex: this.activeDropzoneIndex
         };
         publish(this.messageContext, DRAGNDROP_MC, payload);
-
-
     }
 
     handleRowDragleave(event) {
-        //console.log('in handle row Dragleave');
         const payload = {
             eventType: 'dragleave'
         };

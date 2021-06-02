@@ -11,10 +11,11 @@ import {
 import DRAGNDROP_MC from '@salesforce/messageChannel/DragndropMessageChannel__c';
 
 const DEFAULT_COLOUR = '#005fb2';
-const DEFAULT_HEIGHT = '1.5em';
+const DEFAULT_HEIGHT = '0.75em';
 
 export default class DragndropDropzone extends LightningElement {
 
+    @api name;  // Reserved for future use
     @api colour;
     @api index;
     @api height;
@@ -86,9 +87,11 @@ export default class DragndropDropzone extends LightningElement {
     }
 
     dispatchNewList(list, draggedIndex, dropzoneIndex) {
+        console.log('in dispatchNewList');
+        console.log('list = '+ JSON.stringify(list), '-', 'draggedIndex = '+ draggedIndex, '-', 'dropzoneIndex = '+ dropzoneIndex);
         this.isActive = false;
 
-        // It's not actually moving, it was dropped into the dropzone directly above or below it
+        // Check to see if it's not actually moving because it was dropped into the dropzone directly above or below it (which is like asking yourself for cutsies, it's like... sure).
         if (draggedIndex == dropzoneIndex || draggedIndex == (dropzoneIndex - 1)) {
             return null;
         }
@@ -106,8 +109,8 @@ export default class DragndropDropzone extends LightningElement {
 
     /* Please don't judge me, I know this code is idiotic but it works and I'm scared to touch it */
     reorderList(list, draggedIndex, dropzoneIndex) {
+        // It's not actually moving, it was dropped into the dropzone directly above or below it
         if (draggedIndex == dropzoneIndex || draggedIndex == (dropzoneIndex - 1)) {
-            // ignore, it's not actually moving
             return list;
         } else {
             let indices = [...Array(list.length).keys()];
