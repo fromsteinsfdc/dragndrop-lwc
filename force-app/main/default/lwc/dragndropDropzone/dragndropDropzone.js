@@ -87,8 +87,8 @@ export default class DragndropDropzone extends LightningElement {
     }
 
     dispatchNewList(list, draggedIndex, dropzoneIndex) {
-        console.log('in dispatchNewList');
-        console.log('list = '+ JSON.stringify(list), '-', 'draggedIndex = '+ draggedIndex, '-', 'dropzoneIndex = '+ dropzoneIndex);
+        // console.log('in dispatchNewList');
+        // console.log('list = '+ JSON.stringify(list), '-', 'draggedIndex = '+ draggedIndex, '-', 'dropzoneIndex = '+ dropzoneIndex);
         this.isActive = false;
 
         // Check to see if it's not actually moving because it was dropped into the dropzone directly above or below it (which is like asking yourself for cutsies, it's like... sure).
