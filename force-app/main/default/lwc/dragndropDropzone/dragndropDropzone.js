@@ -15,11 +15,14 @@ const DEFAULT_HEIGHT = '0.75em';
 
 export default class DragndropDropzone extends LightningElement {
 
-    @api name;  // Reserved for future use
-    @api colour;
+    @api name;  // Reserved for future use (to differentiate between multiple dragndrop components)
+    // Required properties
     @api index;
-    @api height;
     @api list;
+    
+    // Optional properties
+    @api height;
+    @api colour;
 
     isActive;
 
@@ -50,7 +53,6 @@ export default class DragndropDropzone extends LightningElement {
 
     // Handler for message received by dragndropRow components
     handleMessage(message) {
-        //this.recordId = message.recordId;
         if (message.eventType == 'dragover') {
             this.isActive = message.activeDropzoneIndex == this.index;
         }
@@ -87,8 +89,6 @@ export default class DragndropDropzone extends LightningElement {
     }
 
     dispatchNewList(list, draggedIndex, dropzoneIndex) {
-        // console.log('in dispatchNewList');
-        // console.log('list = '+ JSON.stringify(list), '-', 'draggedIndex = '+ draggedIndex, '-', 'dropzoneIndex = '+ dropzoneIndex);
         this.isActive = false;
 
         // Check to see if it's not actually moving because it was dropped into the dropzone directly above or below it (which is like asking yourself for cutsies, it's like... sure).
@@ -107,7 +107,6 @@ export default class DragndropDropzone extends LightningElement {
         this.dispatchEvent(dropEvent);
     }
 
-    /* Please don't judge me, I know this code is idiotic but it works and I'm scared to touch it */
     reorderList(list, draggedIndex, dropzoneIndex) {
         // It's not actually moving, it was dropped into the dropzone directly above or below it
         if (draggedIndex == dropzoneIndex || draggedIndex == (dropzoneIndex - 1)) {
