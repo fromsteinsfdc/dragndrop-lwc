@@ -1,17 +1,13 @@
 <template>
     <div class="dragndropSection">
-        <template for:each={rows} for:item="row" for:index="index">
-            <c-dragndrop-dropzone index={index} key={row} list={rows} ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone>
-            <div class="slds-box slds-p-around_none" key={row}>
-                <c-dragndrop-row index={index}>
-                    <div class="slds-grid slds-p-around_small">
-                        <div class="slds-col slds-size_2-of-3">{row}</div>
-                        <div class="slds-col slds-size_1-of-3">
-                            <lightning-button label="Useless button"></lightning-button>
-                        </div>
-                    </div>
-                </c-dragndrop-row>
-            </div>
+        <template for:each={rows} for:item="row" for:index="currentIndex">
+            <c-dragndrop-dropzone index={currentIndex} key={row} list={rows} ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone>
+            <c-dragndrop-row index={currentIndex} key={row}>
+                <div class="slds-grid slds-p-around_small slds-box">
+                    <div class="slds-col slds-size_1-of-2">Original position: {row.originalIndex}</div>
+                    <div class="slds-col slds-size_1-of-2">Current position: {currentIndex}</div>
+                </div>
+            </c-dragndrop-row>
         </template>
         <c-dragndrop-dropzone index={rows.length} list={rows} ondropzonedrop={handleDropzoneDrop}></c-dragndrop-dropzone>
     </div>

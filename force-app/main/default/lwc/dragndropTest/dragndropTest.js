@@ -5,7 +5,9 @@ export default class DragndropTest extends LightningElement {
 
     connectedCallback() {
         for (let i=0; i<5; i++) {
-            this.rows.push('This is row '+ (i+1));
+            this.rows.push({
+                originalIndex: i,
+            });
         }
     }
 
