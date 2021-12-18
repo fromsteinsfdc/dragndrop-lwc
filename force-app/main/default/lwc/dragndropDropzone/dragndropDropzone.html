@@ -1,4 +1,6 @@
 <template>
-    <div style={styleString} ondragover={handleDragover} ondragleave={handleDragleave} ondrop={handleDropzoneDrop}>
-    </div>
+    <template if:false={disabled}>
+        <div style={styleString} ondragover={handleDragover} ondragleave={handleDragleave} ondrop={handleDropzoneDrop}>
+        </div>
+    </template>
 </template>
