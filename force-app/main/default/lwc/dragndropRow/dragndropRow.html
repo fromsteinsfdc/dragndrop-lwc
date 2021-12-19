@@ -1,9 +1,14 @@
 <template>
-    <div class={gridClass} ondragover={handleRowDragover} ondragleave={handleRowDragleave} ondrop={handleRowDrop}>
-        <lightning-icon class="dragHandle" icon-name={iconName} draggable="true" ondragstart={handleDragStart}>
-        </lightning-icon>
-        <div class="slds-col">
-            <slot></slot>
+    <template if:false={disabled}>
+        <div class={gridClass} ondragover={handleRowDragover} ondragleave={handleRowDragleave} ondrop={handleRowDrop}>
+            <lightning-icon class="dragHandle" icon-name={iconName} draggable="true" ondragstart={handleDragStart}>
+            </lightning-icon>
+            <div class="slds-col">
+                <slot></slot>
+            </div>
         </div>
-    </div>
+    </template>
+    <template if:true={disabled}>
+        <slot></slot>
+    </template>
 </template>

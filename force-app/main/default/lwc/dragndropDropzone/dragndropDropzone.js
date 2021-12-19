@@ -23,6 +23,7 @@ export default class DragndropDropzone extends LightningElement {
     // Optional properties
     @api height;
     @api colour;
+    @api disabled;
 
     isActive;
 

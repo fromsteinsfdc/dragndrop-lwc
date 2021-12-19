@@ -12,6 +12,7 @@ export default class DragndropRow extends LightningElement {
     @api handleClass;
     @api iconName = DEFAULT_ICON;
     @api iconAlignment = DEFAULT_ALIGNMENT;
+    @api disabled;
 
     @wire(MessageContext)
     messageContext;
